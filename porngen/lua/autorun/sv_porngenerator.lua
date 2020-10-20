@@ -5,11 +5,9 @@ local config = {
   commands = {"/porn", "!porn", "!genporn", "/genporn",}
 }
 
-hook.Add("PlayerInitialSpawn", "initmenu", function()
-  for k,v in pairs(player.GetAll()) do
-    net.Start("showPorn")
-    net.Send(v)
-  end
+hook.Add("PlayerInitialSpawn", "initmenu", function(ply)
+  net.Start("showPorn")
+  net.Send(ply)
 end)
 
 hook.Add("PlayerSay", "pcmd", function(ply,text)
