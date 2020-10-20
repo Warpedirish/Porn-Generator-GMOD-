@@ -1,2 +1,3 @@
 # Porn-Generator-GMOD-
-Generate Porn Inside Of Your Gmod Server!
+Generate porn inside of your gmod server!
+To add this to your server drag the folder named "porngen" inside this folder into the garrysmod/addons directory.
