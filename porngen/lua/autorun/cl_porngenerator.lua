@@ -23,6 +23,12 @@ net.Receive("initMenu", function()
   porn:Dock(FILL)
   porn:OpenURL("https://nekos.life/lewd")
 
+  local function refreshporn()
+    porn = vgui.Create("DHTML", pornp)
+    porn:Dock(FILL)
+    porn:OpenURL("https://nekos.life/lewd")
+  end
+
   local rfshbtn = vgui.Create("DButton", pf)
   rfshbtn:SetSize(1465, 25)
   rfshbtn:SetPos(15,25)
@@ -35,12 +41,19 @@ net.Receive("initMenu", function()
     surface.DrawOutlinedRect(0,0,self:GetWide(),self:GetTall())
   end
   rfshbtn.DoClick = function() -- refresh
-
-  porn = vgui.Create("DHTML", pornp)
-  porn:Dock(FILL)
-  porn:OpenURL("https://nekos.life/lewd")
-
+    refreshporn()
   end
+
+  hook.Add("Think", "keyDown", function()
+    local key = input.IsKeyDown(KEY_ENTER)
+    local KeyPressed = false
+    if key and !KeyPressed then
+      refreshporn()
+      KeyPressed = true
+    else
+      KeyPressed = false
+    end
+  end)
 
   net.Receive("showPorn", function(ply)
     if pf:IsVisible() then
