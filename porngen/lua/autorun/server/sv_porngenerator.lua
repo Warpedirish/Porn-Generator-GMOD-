@@ -20,7 +20,8 @@ util.AddNetworkString("initMenu")
 util.AddNetworkString("logPorn")
 
 local config = {
-  commands = {"/porn", "!porn", "!genporn", "/genporn",}
+  commands = {"/porn", "!porn", "!genporn", "/genporn"}
+  log = true
 }
 
 hook.Add("PlayerInitialSpawn", "initmenu", function(ply)
@@ -38,5 +39,7 @@ hook.Add("PlayerSay", "pcmd", function(ply,text)
 end)
 
 net.Receive("logPorn", function(len,pl)
-  print(pl:Nick().." ("..pl:SteamID()..")".." Is a Horny Fuck (pornGen)")
+  if config.log then
+    print(pl:Nick().." ("..pl:SteamID()..")".." Is a Horny Fuck (pornGen)")
+  end
 end)
